@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
+//import outside files 
+//import logo from './logo.svg';
+import './App.css';
+const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
+
+class App extends React.Component {
+  constructor (){
+    super();
+    // add state variables- if necessary
+    this.state = {
+
+    };
+  }
+  
+  async componentDidMount(){
+    let response = await fetch (url);
+    if (response.status >= 200 && response.status <= 299){
+      let json = await response.json();
+      let drinks = json.drinks;
+      console.log(drinks);
+      //set state
+    } else {
+      console.log(response.status, response.statusText)
+    }
+  }
+
+  render(){
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
-  );
+    );
+  }
 }
 
 export default App;

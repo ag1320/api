@@ -17,7 +17,7 @@ class App extends React.Component {
       "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=negroni",
       "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=martini",
       "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito"],
-      drinkTypes: [],
+      drinkTypes: [[]],
       urlIndex: 0,
       isUrlLoaded: false
     };
@@ -45,15 +45,11 @@ class App extends React.Component {
   }
 
   render() {
-    let {isUrlLoaded} = this.state.isUrlLoaded;
-    console.log("First URL:", this.state.drinkTypes[0])
     return (<div>
       <BasicSelect setUrlIndex={this.setUrlIndex}/>
-      <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex] : []} />
+      <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex]} />
     </div>)
   }
 }
 
 export default App;
-
-{/* <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex]} /> */}

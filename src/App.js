@@ -35,9 +35,9 @@ class App extends React.Component {
       if (response.status >= 200 && response.status <= 299) {
         let json = await response.json();
         //this.setState(drinkTypes: [...this.state.drinkTypes, json.drinks]);
-        this.setState({drinkTypes: json.drinks});
-        console.log(i)
-        console.log(this.state.drinkTypes[i])
+        this.setState({drinkTypes: [json.drinks]});
+        // console.log(i)
+        // console.log(this.state.drinkTypes[i])
       } else {
       console.log(response.status, response.statusText);
       }
@@ -45,12 +45,15 @@ class App extends React.Component {
   }
 
   render() {
-    let {isUrlLoaded} = this.state;
+    let {isUrlLoaded} = this.state.isUrlLoaded;
+    console.log("First URL:", this.state.drinkTypes[0])
     return (<div>
       <BasicSelect setUrlIndex={this.setUrlIndex}/>
-      <DrinkList drinks={isUrlLoaded ? this.state.drinkTypes[this.state.urlIndex] : {}} />
+      <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex] : []} />
     </div>)
   }
 }
 
 export default App;
+
+{/* <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex]} /> */}

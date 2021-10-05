@@ -21,7 +21,10 @@ class App extends React.Component {
       let json = await response.json();
       let drinks = json.drinks;
       this.setState({drinks: drinks});
+
+      //remove next line before complete
       console.log(this.state.drinks);
+      
     } else {
       console.log(response.status, response.statusText);
     }
@@ -32,6 +35,8 @@ class App extends React.Component {
       <Drink drinks={this.state.drinks} />
       <Directions drinks={this.state.drinks} />
       <Image drinks={this.state.drinks} />
+         {/* <h1> title <h1> */}
+         {/* <form> </form> */}
       </div>)
   }
 }

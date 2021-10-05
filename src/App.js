@@ -22,10 +22,20 @@ class App extends React.Component {
       isUrlLoaded: false
     };
     this.setUrlIndex = this.setUrlIndex.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   setUrlIndex(urlIndex){
     this.setState({urlIndex})
+  }
+
+  handleChange (event) {
+    setUrlIndex(event.target.value);
+    fetchUrl()
+  };
+
+  fetchUrl () {
+
   }
 
   //Asynchronous method called after page has first rendered
@@ -46,7 +56,7 @@ class App extends React.Component {
 
   render() {
     return (<div>
-      <BasicSelect setUrlIndex={this.setUrlIndex}/>
+      <BasicSelect handleChange={this.handleChange} setUrlIndex={this.setUrlIndex}/>
       <DrinkList drinks={this.state.drinkTypes[this.state.urlIndex]} />
     </div>)
   }

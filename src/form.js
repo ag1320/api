@@ -4,11 +4,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
 
-const BasicSelect = function ({setUrlIndex}) {
+const BasicSelect = function ({setUrlIndex, handleChange}) {
 
-const handleChange = (event) => {
-    setUrlIndex(event.target.value);
-  };
 
 
   // labelId="demo-simple-select-label"

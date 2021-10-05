@@ -34,8 +34,8 @@ class App extends React.Component {
       let response = await fetch(this.state.url[i]);
       if (response.status >= 200 && response.status <= 299) {
         let json = await response.json();
-        //this.setState(drinkTypes: [...this.state.drinkTypes, json.drinks]);
-        this.setState({drinkTypes: [json.drinks]});
+        this.setState({drinkTypes: [...this.state.drinkTypes, json.drinks]});
+        //this.setState({drinkTypes: [json.drinks]});
         // console.log(i)
         // console.log(this.state.drinkTypes[i])
       } else {

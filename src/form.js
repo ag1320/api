@@ -21,7 +21,11 @@ const handleChange = (event) => {
         label="side"
         onChange={handleChange}
         >
-        <MenuItem value={0}>Margarita</MenuItem>
+        <MenuItem value={1}>Margarita</MenuItem>
+        <MenuItem value={2}>Daiquiri</MenuItem>
+        <MenuItem value={3}>Negroni</MenuItem>
+        <MenuItem value={4}>Martini</MenuItem>
+        <MenuItem value={5}>Mojito</MenuItem>
         </Select>
     </FormControl>)
 }

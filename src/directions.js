@@ -1,7 +1,6 @@
-const Directions = ({drinks}) => {
-  let listDrinks = drinks.map((drink, index) =>
-  <li key ="index">{drink.strInstructions}</li>)
-  return (<ul>{listDrinks}</ul>)
+const Directions = ({drink}) => {
+return (<span>{drink.strInstructions}</span>)
+
 }
 
 export default Directions;

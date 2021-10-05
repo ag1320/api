@@ -1,22 +1,30 @@
 import React from 'react';
-import Drink from "./drink.js";
-import Directions from "./directions.js";
-import Image from "./image.js";
+import DrinkList from "./drink.js";
+import BasicSelect from './form.js'
 
 //const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
-const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=daiquiri";
+//const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=daiquiri";
+//const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=negroni";
+//const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=martini";
+//const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      drinks: []
+      drinks: [],
+      url: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito'
     };
+    this.setUrl = this.setUrl.bind(this)
+  }
+
+  setUrl(url){
+    this.setState({url})
   }
 
   //Asynchronous method called after page has first rendered
   async componentDidMount() {
-    let response = await fetch(url);
+    let response = await fetch(this.state.url);
     if (response.status >= 200 && response.status <= 299) {
       let json = await response.json();
       let drinks = json.drinks;
@@ -31,13 +39,11 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.url)
     return (<div>
-      <Drink drinks={this.state.drinks} />
-      <Directions drinks={this.state.drinks} />
-      <Image drinks={this.state.drinks} />
-         {/* <h1> title <h1> */}
-         {/* <form> </form> */}
-      </div>)
+      <BasicSelect url={this.state.url} setUrlMethod={this.setUrl}/>
+      <DrinkList drinks={this.state.drinks} />
+    </div>)
   }
 }
 

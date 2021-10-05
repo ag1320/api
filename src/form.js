@@ -4,10 +4,10 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
 
-const BasicSelect = function ({url, setUrlMethod}) {
+const BasicSelect = function ({setUrlIndex}) {
 
 const handleChange = (event) => {
-    setUrlMethod(event.target.value);
+    setUrlIndex(event.target.value);
   };
 
 
@@ -17,11 +17,11 @@ const handleChange = (event) => {
    return (<FormControl fullWidth>
         <InputLabel>Select Drink</InputLabel>
         <Select
-        value={url}
+        value = {0}
         label="side"
         onChange={handleChange}
         >
-        <MenuItem value={"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"}>Margarita</MenuItem>
+        <MenuItem value={0}>Margarita</MenuItem>
         </Select>
     </FormControl>)
 }

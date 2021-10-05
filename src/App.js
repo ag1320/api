@@ -12,37 +12,43 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      drinks: [],
-      url: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito'
+      url: ["https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=daiquiri",
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=negroni",
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=martini",
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito"],
+      drinkTypes: [],
+      urlIndex: 0,
+      isUrlLoaded: false
     };
-    this.setUrl = this.setUrl.bind(this)
+    this.setUrlIndex = this.setUrlIndex.bind(this)
   }
 
-  setUrl(url){
-    this.setState({url})
+  setUrlIndex(urlIndex){
+    this.setState({urlIndex})
   }
 
   //Asynchronous method called after page has first rendered
   async componentDidMount() {
-    let response = await fetch(this.state.url);
-    if (response.status >= 200 && response.status <= 299) {
-      let json = await response.json();
-      let drinks = json.drinks;
-      this.setState({drinks: drinks});
-
-      //remove next line before complete
-      console.log(this.state.drinks);
-      
-    } else {
+    for (let i = 0; i < this.state.url.length; i++) {
+      let response = await fetch(this.state.url[i]);
+      if (response.status >= 200 && response.status <= 299) {
+        let json = await response.json();
+        //this.setState(drinkTypes: [...this.state.drinkTypes, json.drinks]);
+        this.setState({drinkTypes: json.drinks});
+        console.log(i)
+        console.log(this.state.drinkTypes[i])
+      } else {
       console.log(response.status, response.statusText);
+      }
     }
   }
 
   render() {
-    console.log(this.state.url)
+    let {isUrlLoaded} = this.state;
     return (<div>
-      <BasicSelect url={this.state.url} setUrlMethod={this.setUrl}/>
-      <DrinkList drinks={this.state.drinks} />
+      <BasicSelect setUrlIndex={this.setUrlIndex}/>
+      <DrinkList drinks={isUrlLoaded ? this.state.drinkTypes[this.state.urlIndex] : {}} />
     </div>)
   }
 }
